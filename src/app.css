@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+:root {
+    --primary: #c8c8c8;
+    --foreground: #1b1b1b;
+    --background: #ececec;
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    text-align: center;
+}
+
+button,
+input,
+select {
+    background-color: var(--primary);
+    color: var(--foreground);
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    padding: 0.6rem 1rem;
+    margin: 1rem 0;
+    cursor: pointer;
+}
+
+input {
+    padding: 0.6rem;
+}
+
+select {
+    padding: 0.6rem;
+    min-width: 10em;
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+}
+
+p {
+    margin: 0;
+    padding: 10px;
+}
+
+::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+/* Remove default style in Safari */
+@media not all and (min-resolution: 0.001dpcm) {
+    select {
+        -webkit-appearance: none;
+    }
+}
