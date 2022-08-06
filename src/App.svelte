@@ -7,10 +7,6 @@
 
     import Login from "./Login.svelte";
 
-    import sun from "./assets/sun.svg";
-    import arrowLeft from "./assets/arrowLeft.svg";
-    import arrowRight from "./assets/arrowRight.svg";
-
     let loggedIn = false;
     isLoggedIn.subscribe((value) => {
         loggedIn = value;
@@ -108,7 +104,7 @@
         <header>
             <button on:click={logout}>Déconnexion</button>
             <button on:click={toggleDarkMode} aria-label="Changer de thème">
-                <img src={sun} alt="Clock" height="13" width="13" />
+                <img src="/assets/sun.svg" alt="Thème" height="13" width="13" />
             </button>
             <button type="button" on:click={today}>Aujourd'hui</button>
             <input
@@ -128,10 +124,10 @@
                 on:click={previousWeek}
                 aria-label="Précédente"
             >
-                <img src={arrowLeft} alt="Clock" height="13" width="13" />
+                <img src="/assets/arrowLeft.svg" alt="Précédente" height="13" width="13" />
             </button>
             <button type="button" on:click={nextWeek} aria-label="Suivante">
-                <img src={arrowRight} alt="Clock" height="13" width="13" />
+                <img src="/assets/arrowRight.svg" alt="Suivante" height="13" width="13" />
             </button>
             <p>
                 Code: {groupCode ||

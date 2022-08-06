@@ -1,7 +1,4 @@
 <script lang="ts">
-    import logo from "./assets/logo.svg";
-    import trash from "./assets/trash.svg";
-
     import { errorCode, login } from "./lib/login";
     import { deleteHistory, getHistory } from "./lib/history";
 
@@ -28,7 +25,7 @@
 <svelte:window on:keydown={onKeydown} />
 
 <div>
-    <img src={logo} alt="Logo" height="80" width="80" />
+    <img src="/assets/logo.svg" alt="Logo" height="80" width="80" />
 
     <h1>VT Next</h1>
 
@@ -59,7 +56,7 @@
         on:click={deleteHistory}
         aria-label="Supprimer l'historique"
     >
-        <img src={trash} alt="Trash" height="13" width="13" />
+        <img src="/assets/trash.svg" alt="Trash" height="13" width="13" />
     </button>
 </div>
 

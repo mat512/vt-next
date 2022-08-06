@@ -17,7 +17,7 @@ Application that provides an enhanced version of your scheduling software for un
 $ npm install
 
 # Run the app
-$ npm start
+$ npm run dev
 
 # Run the API
 $ npx wrangler pages dev ./functions -b VT_AGENDA_URL="https://edt.example.fr"

@@ -8,7 +8,7 @@ export default defineConfig({
     svelte(),
     VitePWA({ 
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.png', 'logo.svg', 'global.css', 'icons/apple-touch-icon.png'],
+      includeAssets: ['icons/*.png', 'assets/*.svg'],
       manifest: {
         name: 'VT Next Evry',
         short_name: 'VT Next',
