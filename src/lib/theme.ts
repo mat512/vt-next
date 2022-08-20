@@ -1,4 +1,4 @@
-export function toggleDarkMode() {
+export function toggleDarkMode(): void {
     if (document.body.style.color === "var(--background)") {
         document.body.style.color = "var(--foreground)";
         document.body.style.backgroundColor = "var(--background)";

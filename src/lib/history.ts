@@ -1,4 +1,4 @@
-export function addHistory(inputCode) {
+export function addHistory(inputCode: string): void {
     let groupCodeHistory = localStorage.getItem("groupCodeHistory");
 
     if (groupCodeHistory === null) {
@@ -14,7 +14,7 @@ export function addHistory(inputCode) {
     );
 }
 
-export function getHistory() {
+export function getHistory(): string[] {
     let groupCodeHistory = localStorage.getItem("groupCodeHistory");
 
     let groupCodeHistoryList = [];
@@ -26,6 +26,6 @@ export function getHistory() {
     return groupCodeHistoryList;
 }
 
-export function deleteHistory() {
+export function deleteHistory(): void {
     localStorage.setItem("groupCodeHistory", "");
 }

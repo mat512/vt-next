@@ -1,17 +1,16 @@
 <script lang="ts">
-    import { errorCode, login } from "./lib/login";
+    import { login } from "./lib/login";
     import { deleteHistory, getHistory } from "./lib/history";
 
     let errorCodeVisible = false;
-    errorCode.subscribe((value) => {
-        errorCodeVisible = value;
-    });
 
     let inputCode = localStorage.getItem("groupCode");
     let inputRemember = true;
 
     function loginEvent() {
-        login(inputCode, inputRemember);
+        login(inputCode, inputRemember).then((value) => {
+            errorCodeVisible = value;
+        });
     }
 
     function onKeydown(event: KeyboardEvent) {

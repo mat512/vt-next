@@ -5,9 +5,11 @@ import { addHistory } from "./history";
 export const isLoggedIn = writable(false);
 export const vtCodeValue = writable("");
 export const groupCodeValue = writable("");
-export const errorCode = writable(false);
 
-export async function login(inputCode, inputRemember) {
+export async function login(
+    inputCode: string,
+    inputRemember: boolean
+): Promise<boolean> {
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/text" },
@@ -32,8 +34,8 @@ export async function login(inputCode, inputRemember) {
         vtCodeValue.set(value);
         groupCodeValue.set(inputCode);
 
-        errorCode.set(false);
+        return false;
     } else {
-        errorCode.set(true);
+        return true;
     }
 }
