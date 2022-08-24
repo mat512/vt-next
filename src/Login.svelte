@@ -21,7 +21,7 @@
 
     <h1>VT Next</h1>
 
-    <form on:submit={loginEvent} action="#">
+    <form on:submit|preventDefault={loginEvent}>
         <input bind:value={inputCode} placeholder="Code de groupe VT" />
         <input type="submit" value="Continuer" />
         {#if errorCodeVisible}
