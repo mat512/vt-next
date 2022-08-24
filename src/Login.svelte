@@ -13,36 +13,26 @@
         });
     }
 
-    function onKeydown(event: KeyboardEvent) {
-        const key = event.key;
-        if (key === "Enter") loginEvent();
-    }
-
     let groupCodeHistoryList = getHistory();
 </script>
-
-<svelte:window on:keydown={onKeydown} />
 
 <div>
     <img src="/assets/logo.svg" alt="Logo" height="80" width="80" />
 
     <h1>VT Next</h1>
 
-    <input bind:value={inputCode} placeholder="Code de groupe VT" />
-    <button type="button" on:click={loginEvent}>Continuer</button>
-
-    {#if errorCodeVisible}
-        <p style="color: red;">Désolé code invalide :/</p>
-    {/if}
-
-    <br />
+    <form on:submit={loginEvent} action="#">
+        <input bind:value={inputCode} placeholder="Code de groupe VT" />
+        <input type="submit" value="Continuer" />
+        {#if errorCodeVisible}
+            <span>Désolé code invalide :/</span>
+        {/if}
+    </form>
 
     <label>
         <input type="checkbox" bind:checked={inputRemember} />
         Se souvenir
     </label>
-
-    <br />
 
     <p>Historique:</p>
     <select bind:value={inputCode}>
@@ -65,6 +55,13 @@
     }
 
     input[type="checkbox"] {
-        margin: 1em;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+    span {
+        display: block;
+        margin-top: 1em;
+        color: red;
     }
 </style>

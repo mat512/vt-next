@@ -1,10 +1,8 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-
     import { getWeek, getWeeksInYear, getYear } from "./lib/date";
     import { groupCodeValue, isLoggedIn, vtCodeValue } from "./lib/login";
-    import { toggleDarkMode } from "./lib/theme";
-
+    import Image from "./lib/Image.svelte";
+    import Theme from "./lib/Theme.svelte";
     import Login from "./Login.svelte";
 
     let loggedIn = false;
@@ -19,9 +17,6 @@
     groupCodeValue.subscribe((value) => {
         groupCode = value;
     });
-
-    const isDarkMode = localStorage.getItem("darkMode");
-    if (isDarkMode === "true") toggleDarkMode();
 
     // If a code as already saved
     if (localStorage.getItem("groupCode") !== null) {
@@ -84,17 +79,6 @@
         if (key === "ArrowRight") nextWeek();
         if (key === "ArrowUp") today();
     }
-
-    let vtUrl = localStorage.getItem("vtUrl");
-    if (vtUrl === null) {
-        onMount(async () => {
-            const response = await fetch(
-                import.meta.env.VITE_API_URL + "/api/url"
-            );
-            vtUrl = await response.text();
-            localStorage.setItem("vtUrl", vtUrl);
-        });
-    }
 </script>
 
 <svelte:window on:keydown={onKeydown} />
@@ -103,9 +87,7 @@
     {#if loggedIn}
         <header>
             <button on:click={logout}>Déconnexion</button>
-            <button on:click={toggleDarkMode} aria-label="Changer de thème">
-                <img src="/assets/sun.svg" alt="Thème" height="13" width="13" />
-            </button>
+            <Theme />
             <button type="button" on:click={today}>Aujourd'hui</button>
             <input
                 type="number"
@@ -124,10 +106,20 @@
                 on:click={previousWeek}
                 aria-label="Précédente"
             >
-                <img src="/assets/arrowLeft.svg" alt="Précédente" height="13" width="13" />
+                <img
+                    src="/assets/arrowLeft.svg"
+                    alt="Précédente"
+                    height="13"
+                    width="13"
+                />
             </button>
             <button type="button" on:click={nextWeek} aria-label="Suivante">
-                <img src="/assets/arrowRight.svg" alt="Suivante" height="13" width="13" />
+                <img
+                    src="/assets/arrowRight.svg"
+                    alt="Suivante"
+                    height="13"
+                    width="13"
+                />
             </button>
             <p>
                 Code: {groupCode ||
@@ -136,13 +128,7 @@
             </p>
         </header>
 
-        {#if vtUrl !== null}
-            <img
-                src="{vtUrl}/vue_etudiant_horizontale.php?current_year={year}&current_student={vtCode}&current_week={week}&lar={width}&hau={height}"
-                alt="Emploi du temps"
-                usemap="#navigation"
-            />
-        {/if}
+        <Image {year} {vtCode} {week} {width} {height} />
     {:else}
         <Login />
     {/if}
