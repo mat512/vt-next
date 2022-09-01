@@ -1,22 +1,20 @@
 <script lang="ts">
-    function toggleDarkMode(): void {
-        if (document.body.style.color === "var(--background)") {
-            document.body.style.color = "var(--foreground)";
-            document.body.style.backgroundColor = "var(--background)";
+    function toggleTheme(): void {
+        if (document.body.getAttribute("data-theme") === "dark") {
+            document.body.setAttribute("data-theme", "light");
 
-            localStorage.setItem("darkMode", "false");
+            localStorage.setItem("theme", "light");
         } else {
-            document.body.style.color = "var(--background)";
-            document.body.style.backgroundColor = "var(--foreground)";
+            document.body.setAttribute("data-theme", "dark");
 
-            localStorage.setItem("darkMode", "true");
+            localStorage.setItem("theme", "dark");
         }
     }
 
-    const isDarkMode = localStorage.getItem("darkMode");
-    if (isDarkMode === "true") toggleDarkMode();
+    if (localStorage.getItem("theme") === "dark")
+        document.body.setAttribute("data-theme", "dark");
 </script>
 
-<button on:click={toggleDarkMode} aria-label="Changer de thème">
+<button on:click={toggleTheme} aria-label="Changer de thème" class="btn">
     <img src="/assets/sun.svg" alt="Thème" height="13" width="13" />
 </button>

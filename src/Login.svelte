@@ -16,52 +16,84 @@
     let groupCodeHistoryList = getHistory();
 </script>
 
-<div>
-    <img src="/assets/logo.svg" alt="Logo" height="80" width="80" />
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content text-center">
+        <div class="max-w-md">
+            <div class="avatar">
+                <div class="w-24 rounded-xl">
+                    <img
+                        src="/assets/logo.svg"
+                        alt="Logo"
+                        height="80"
+                        width="80"
+                    />
+                </div>
+            </div>
 
-    <h1>VT Next</h1>
+            <h1 class="text-3xl m-5 font-bold">VT Next</h1>
 
-    <form on:submit|preventDefault={loginEvent}>
-        <input bind:value={inputCode} placeholder="Code de groupe VT" />
-        <input type="submit" value="Continuer" />
-        {#if errorCodeVisible}
-            <span>Désolé code invalide :/</span>
-        {/if}
-    </form>
+            <form on:submit|preventDefault={loginEvent}>
+                <div class="form-control w-full max-w-xs">
+                    <input
+                        bind:value={inputCode}
+                        type="text"
+                        placeholder="Code de groupe VT"
+                        class="input input-bordered w-full max-w-xs"
+                    />
 
-    <label>
-        <input type="checkbox" bind:checked={inputRemember} />
-        Se souvenir
-    </label>
+                    <label class="label" for="">
+                        {#if errorCodeVisible}
+                            <span class="label-text-alt text-amber-700">
+                                Désolé code invalide :/
+                            </span>
+                        {/if}
+                    </label>
 
-    <p>Historique:</p>
-    <select bind:value={inputCode}>
-        {#each groupCodeHistoryList as code}
-            <option value={code}>{code}</option>
-        {/each}
-    </select>
-    <button
-        type="button"
-        on:click={deleteHistory}
-        aria-label="Supprimer l'historique"
-    >
-        <img src="/assets/trash.svg" alt="Trash" height="13" width="13" />
-    </button>
+                    <label class="label cursor-pointer ">
+                        <span class="label-text">Se souvenir</span>
+                        <input
+                            type="checkbox"
+                            bind:checked={inputRemember}
+                            class="checkbox"
+                        />
+                    </label>
+
+                    <input class="btn" type="submit" value="Continuer" />
+                </div>
+            </form>
+
+            <p class="mt-5 text-left">Historique:</p>
+            <div class="form-control">
+                <div class="input-group">
+                    <select
+                        bind:value={inputCode}
+                        class="select select-bordered "
+                    >
+                        {#each groupCodeHistoryList as code}
+                            <option value={code}>{code}</option>
+                        {/each}
+                    </select>
+                    <button
+                        class="btn"
+                        type="button"
+                        on:click={deleteHistory}
+                        aria-label="Supprimer l'historique"
+                    >
+                        <img
+                            src="/assets/trash.svg"
+                            alt="Trash"
+                            height="13"
+                            width="13"
+                        /></button
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
-    div {
-        margin-top: 20vh;
-    }
-
-    input[type="checkbox"] {
-        margin-top: 2em;
-        margin-bottom: 2em;
-    }
-
-    span {
-        display: block;
-        margin-top: 1em;
-        color: red;
+    select {
+        min-width: 10em;
     }
 </style>

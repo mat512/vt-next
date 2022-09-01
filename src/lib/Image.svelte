@@ -24,5 +24,6 @@
         src="{vtUrl}/vue_etudiant_horizontale.php?current_year={year}&current_student={vtCode}&current_week={week}&lar={width}&hau={height}"
         alt="Emploi du temps"
         usemap="#navigation"
+        class="w-full"
     />
 {/if}

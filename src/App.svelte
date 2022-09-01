@@ -83,28 +83,33 @@
 
 <svelte:window on:keydown={onKeydown} />
 
-<main>
+<main class="bg-base-200 text-center">
     {#if loggedIn}
-        <header>
-            <button on:click={logout}>Déconnexion</button>
+        <header class="p-1">
+            <button on:click={logout} class="btn mt-5">Déconnexion</button>
             <Theme />
-            <button type="button" on:click={today}>Aujourd'hui</button>
+            <button type="button" on:click={today} class="btn">
+                Aujourd'hui
+            </button>
             <input
                 type="number"
                 placeholder="Semaine"
                 min="1"
                 bind:value={week}
+                class="input input-bordered"
             />
             <input
                 type="date"
                 placeholder="Calendrier"
                 bind:value={inputDate}
                 on:change={calendar}
+                class="input input-bordered mt-5"
             />
             <button
                 type="button"
                 on:click={previousWeek}
                 aria-label="Précédente"
+                class="btn"
             >
                 <img
                     src="/assets/arrowLeft.svg"
@@ -113,7 +118,12 @@
                     width="13"
                 />
             </button>
-            <button type="button" on:click={nextWeek} aria-label="Suivante">
+            <button
+                type="button"
+                on:click={nextWeek}
+                aria-label="Suivante"
+                class="btn"
+            >
                 <img
                     src="/assets/arrowRight.svg"
                     alt="Suivante"
@@ -121,7 +131,7 @@
                     width="13"
                 />
             </button>
-            <p>
+            <p class="mt-5">
                 Code: {groupCode ||
                     "(Non défini, déconnectez-vous et entrez votre code VT)"} - Semaine:
                 {week} - Année: {year}
@@ -136,11 +146,10 @@
 
 <style>
     input[type="number"] {
-        width: 40px;
+        width: 5em;
     }
 
     input[type="date"] {
-        max-width: 8rem;
         -webkit-appearance: none;
     }
 </style>
