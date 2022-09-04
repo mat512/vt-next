@@ -27,5 +27,5 @@ export function getHistory(): string[] {
 }
 
 export function deleteHistory(): void {
-    localStorage.setItem("groupCodeHistory", "");
+    localStorage.removeItem("groupCodeHistory");
 }
