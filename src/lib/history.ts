@@ -28,4 +28,6 @@ export function getHistory(): string[] {
 
 export function deleteHistory(): void {
     localStorage.removeItem("groupCodeHistory");
+    localStorage.removeItem("groupCode");
+    localStorage.removeItem("vtCode");
 }

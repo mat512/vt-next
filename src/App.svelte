@@ -34,6 +34,10 @@
         height = 1920;
     }
 
+    // If theme preference is dark
+    if (localStorage.getItem("theme") === "dark")
+        document.body.setAttribute("data-theme", "dark");
+
     let week = getWeek(new Date());
     let year = getYear(week);
 

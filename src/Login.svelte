@@ -13,6 +13,11 @@
         });
     }
 
+    function deleteEvent() {
+        deleteHistory();
+        location.reload();
+    }
+
     let groupCodeHistoryList = getHistory();
 </script>
 
@@ -76,7 +81,7 @@
                     <button
                         class="btn"
                         type="button"
-                        on:click={deleteHistory}
+                        on:click={deleteEvent}
                         aria-label="Supprimer l'historique"
                     >
                         <img

@@ -10,9 +10,6 @@
             localStorage.setItem("theme", "dark");
         }
     }
-
-    if (localStorage.getItem("theme") === "dark")
-        document.body.setAttribute("data-theme", "dark");
 </script>
 
 <button on:click={toggleTheme} aria-label="Changer de thème" class="btn">
