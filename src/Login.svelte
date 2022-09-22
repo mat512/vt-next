@@ -8,7 +8,7 @@
     let inputRemember = true;
 
     function loginEvent() {
-        login(inputCode, inputRemember).then((value) => {
+        login(inputCode.toUpperCase(), inputRemember).then((value) => {
             errorCodeVisible = value;
         });
     }
