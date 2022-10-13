@@ -68,7 +68,7 @@
         const date = new Date(inputDate);
         if (!isNaN(date.getTime())) {
             week = getWeek(date);
-            year = getYear(week);
+            year = date.getFullYear();
         }
     }
 
