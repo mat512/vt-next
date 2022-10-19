@@ -1,9 +1,15 @@
 <script lang="ts">
-    import { getWeek, getWeeksInYear, getYear } from "./lib/date";
     import { groupCodeValue, isLoggedIn, vtCodeValue } from "./lib/login";
-    import Image from "./lib/Image.svelte";
-    import Theme from "./lib/Theme.svelte";
+    import { nextWeek, previousWeek, today } from "./lib/date";
+    import { week, year } from "./lib/stores";
+
+    import Image from "./components/Image.svelte";
+    import Theme from "./components/Theme.svelte";
     import Login from "./Login.svelte";
+    import NextWeeks from "./components/NextWeek.svelte";
+    import PreviousWeeks from "./components/PreviousWeek.svelte";
+    import Today from "./components/Today.svelte";
+    import Calendar from "./components/Calendar.svelte";
 
     let loggedIn = false;
     isLoggedIn.subscribe((value) => {
@@ -38,40 +44,6 @@
     if (localStorage.getItem("theme") === "dark")
         document.body.setAttribute("data-theme", "dark");
 
-    let week = getWeek(new Date());
-    let year = getYear(week);
-
-    function today() {
-        week = getWeek(new Date());
-        year = getYear(week);
-    }
-
-    function previousWeek() {
-        week -= 1;
-        if (week <= 0) {
-            year -= 1;
-            week = getWeeksInYear(year);
-        }
-    }
-
-    function nextWeek() {
-        week += 1;
-        if (week > getWeeksInYear(year)) {
-            year += 1;
-            week = 1;
-        }
-    }
-
-    let inputDate = new Date().toISOString().slice(0, 10);
-
-    function calendar() {
-        const date = new Date(inputDate);
-        if (!isNaN(date.getTime())) {
-            week = getWeek(date);
-            year = date.getFullYear();
-        }
-    }
-
     function logout() {
         loggedIn = false;
         isLoggedIn.set(false);
@@ -79,9 +51,30 @@
 
     function onKeydown(event: KeyboardEvent) {
         const key = event.key;
-        if (key === "ArrowLeft") previousWeek();
-        if (key === "ArrowRight") nextWeek();
-        if (key === "ArrowUp") today();
+
+        if (key === "ArrowLeft" || key === "ArrowRight" || key === "ArrowUp") {
+            let result = today($week, $year);
+
+            switch (key) {
+                case "ArrowLeft":
+                    result = previousWeek($week, $year);
+                    break;
+
+                case "ArrowRight":
+                    result = nextWeek($week, $year);
+                    break;
+
+                case "ArrowUp":
+                    result = today($week, $year);
+                    break;
+
+                default:
+                    break;
+            }
+
+            week.set(result.week);
+            year.set(result.year);
+        }
     }
 </script>
 
@@ -92,53 +85,21 @@
         <header class="p-1">
             <button on:click={logout} class="btn mt-5">Déconnexion</button>
             <Theme />
-            <button type="button" on:click={today} class="btn">
-                Aujourd'hui
-            </button>
+            <Today />
             <input
                 type="number"
                 placeholder="Semaine"
                 min="1"
-                bind:value={week}
+                bind:value={$week}
                 class="input input-bordered"
             />
-            <input
-                type="date"
-                placeholder="Calendrier"
-                bind:value={inputDate}
-                on:change={calendar}
-                class="input input-bordered mt-5"
-            />
-            <button
-                type="button"
-                on:click={previousWeek}
-                aria-label="Précédente"
-                class="btn"
-            >
-                <img
-                    src="/assets/arrowLeft.svg"
-                    alt="Précédente"
-                    height="13"
-                    width="13"
-                />
-            </button>
-            <button
-                type="button"
-                on:click={nextWeek}
-                aria-label="Suivante"
-                class="btn"
-            >
-                <img
-                    src="/assets/arrowRight.svg"
-                    alt="Suivante"
-                    height="13"
-                    width="13"
-                />
-            </button>
+            <Calendar />
+            <PreviousWeeks />
+            <NextWeeks />
             <p class="mt-5">
                 Code: {groupCode ||
                     "(Non défini, déconnectez-vous et entrez votre code VT)"} - Semaine:
-                {week} - Année: {year}
+                {$week} - Année: {$year}
             </p>
         </header>
 
@@ -151,9 +112,5 @@
 <style>
     input[type="number"] {
         width: 5em;
-    }
-
-    input[type="date"] {
-        -webkit-appearance: none;
     }
 </style>

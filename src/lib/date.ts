@@ -26,3 +26,30 @@ export function getYear(week: number): number {
         ? new Date().getFullYear() - 1
         : new Date().getFullYear();
 }
+
+export function previousWeek(week: number, year: number) {
+    week -= 1;
+    if (week <= 0) {
+        year -= 1;
+        week = getWeeksInYear(year);
+    }
+
+    return { week, year };
+}
+
+export function nextWeek(week: number, year: number) {
+    week += 1;
+    if (week > getWeeksInYear(year)) {
+        year += 1;
+        week = 1;
+    }
+
+    return { week, year };
+}
+
+export function today(week: number, year: number) {
+    week = getWeek(new Date());
+    year = getYear(week);
+
+    return { week, year };
+}
