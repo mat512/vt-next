@@ -2,10 +2,16 @@ import { writable } from "svelte/store";
 
 import { addHistory } from "./history";
 
-export const isLoggedIn = writable(false);
-export const vtCodeValue = writable("");
-export const groupCodeValue = writable("");
+export const loggedIn = writable(false);
+export const vtCode = writable("");
+export const groupCode = writable("");
 
+/**
+ * Send a request to the API
+ * @param inputCode
+ * @param inputRemember
+ * @returns If an error occurs
+ */
 export async function login(
     inputCode: string,
     inputRemember: boolean
@@ -30,9 +36,9 @@ export async function login(
             addHistory(inputCode);
         }
 
-        isLoggedIn.set(true);
-        vtCodeValue.set(value);
-        groupCodeValue.set(inputCode);
+        loggedIn.set(true);
+        vtCode.set(value);
+        groupCode.set(inputCode);
 
         return false;
     } else {
