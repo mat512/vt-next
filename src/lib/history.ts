@@ -1,3 +1,7 @@
+/**
+ * Add a code in the `localStorage`.
+ * @param inputCode The input code
+ */
 export function addHistory(inputCode: string): void {
     let groupCodeHistory = localStorage.getItem("groupCodeHistory");
 
@@ -14,6 +18,10 @@ export function addHistory(inputCode: string): void {
     );
 }
 
+/**
+ * Return the list of all saved code in the `localStorage`.
+ * @returns The list of saved code 
+ */
 export function getHistory(): string[] {
     let groupCodeHistory = localStorage.getItem("groupCodeHistory");
 
@@ -26,6 +34,9 @@ export function getHistory(): string[] {
     return groupCodeHistoryList;
 }
 
+/**
+ * Remove all saved code from the `localStorage`.
+ */
 export function deleteHistory(): void {
     localStorage.removeItem("groupCodeHistory");
     localStorage.removeItem("groupCode");

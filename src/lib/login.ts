@@ -7,9 +7,9 @@ export const vtCode = writable("");
 export const groupCode = writable("");
 
 /**
- * Send a request to the API
- * @param inputCode
- * @param inputRemember
+ * Send a request to the API.
+ * @param inputCode The input code
+ * @param inputRemember The input remember
  * @returns If an error occurs
  */
 export async function login(
