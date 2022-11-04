@@ -1,3 +1,9 @@
+/**
+ * Add the necessary CORS headers.
+ * @param headers The Headers interface
+ * @param request The HTTP request
+ * @returns The CORS header 
+ */
 export function cors(headers, request) {
     headers.set("Access-Control-Allow-Origin", request.headers.get("Origin"));
 

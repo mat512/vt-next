@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "playwright test --headed"
   },
   "devDependencies": {
+    "@playwright/test": "^1.27.1",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
     "@tsconfig/svelte": "^2.0.1",
     "autoprefixer": "^10.4.8",

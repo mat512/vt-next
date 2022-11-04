@@ -1,5 +1,10 @@
 import { cors } from "./cors";
 
+/**
+ * Listen on request from a client.
+ * @param param0 The HTTP request and the Workers environment variables
+ * @returns The HTTP Response
+ */
 export async function onRequest({ request, env }) {
     let headers = new Headers();
     headers = cors(headers, request);
@@ -33,6 +38,11 @@ export async function onRequest({ request, env }) {
     });
 }
 
+/**
+ * Return the request from a client and check if `contentType` is valid.
+ * @param request The HTTP request
+ * @returns The request in text
+ */
 async function readRequestBody(request) {
     const { headers } = request;
     const contentType = headers.get("content-type") || "";
