@@ -72,7 +72,7 @@
                 <div class="input-group">
                     <select
                         bind:value={inputCode}
-                        class="select select-bordered "
+                        class="select select-bordered min-w-[70%]"
                     >
                         {#each groupCodeHistoryList as code}
                             <option value={code}>{code}</option>
@@ -96,9 +96,3 @@
         </div>
     </div>
 </div>
-
-<style>
-    select {
-        min-width: 10em;
-    }
-</style>

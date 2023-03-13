@@ -5,8 +5,8 @@
 
     import Image from "./components/Image.svelte";
     import Theme from "./components/Theme.svelte";
-    import NextWeeks from "./components/NextWeek.svelte";
-    import PreviousWeeks from "./components/PreviousWeek.svelte";
+    import NextWeek from "./components/NextWeek.svelte";
+    import PreviousWeek from "./components/PreviousWeek.svelte";
     import Today from "./components/Today.svelte";
     import Calendar from "./components/Calendar.svelte";
     import Logout from "./components/Logout.svelte";
@@ -54,11 +54,11 @@
             placeholder="Semaine"
             min="1"
             bind:value={$week}
-            class="input input-bordered"
+            class="input input-bordered w-20"
         />
         <Calendar />
-        <PreviousWeeks />
-        <NextWeeks />
+        <PreviousWeek />
+        <NextWeek />
         <p class="mt-5">
             Code: {$groupCode ||
                 "(Non défini, déconnectez-vous et entrez votre code VT)"} - Semaine:
@@ -68,9 +68,3 @@
 
     <Image {year} {vtCode} {week} {width} {height} />
 </div>
-
-<style>
-    input[type="number"] {
-        width: 5em;
-    }
-</style>
