@@ -4,6 +4,8 @@
 
 Application that provides an enhanced version of your scheduling software for universities that use "VT Agenda" software.
 
+<img width="1374" alt="Capture d’écran 2023-03-14 à 18 24 22" src="https://user-images.githubusercontent.com/71132805/225091622-d9c1f6f7-d7c1-4b45-8439-c8b6521e7f87.png">
+
 ### Built With
 
 -   [Svelte](https://svelte.dev/)
