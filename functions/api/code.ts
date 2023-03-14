@@ -1,20 +1,13 @@
-import { cors } from "./cors";
-
 /**
  * Listen on request from a client.
  * @param param0 The HTTP request and the Workers environment variables
  * @returns The HTTP Response
  */
-export async function onRequest({ request, env }) {
-    let headers = new Headers();
-    headers = cors(headers, request);
-
+export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     const reqBody = await readRequestBody(request);
 
     if (reqBody === undefined) {
-        return new Response("the Content-Type must be application/text", {
-            headers: headers,
-        });
+        return new Response("the Content-Type must be application/text");
     }
 
     const init = {
@@ -33,10 +26,8 @@ export async function onRequest({ request, env }) {
     if (regex === null) results = "no code found";
     else results = regex[1];
 
-    return new Response(results, {
-        headers: headers,
-    });
-}
+    return new Response(results);
+};
 
 /**
  * Return the request from a client and check if `contentType` is valid.
