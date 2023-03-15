@@ -1,12 +1,16 @@
 import { expect, test } from "@playwright/test";
 
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const code: string = process.env.CODE || "";
+
 test.describe("header", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/");
 
-        await page
-            .locator('[placeholder="Code de groupe VT"]')
-            .fill("UnitTest");
+        await page.locator('[placeholder="Code de groupe VT"]').fill(code);
         await page.locator("text=Continuer").click();
     });
 

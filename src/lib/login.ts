@@ -12,12 +12,6 @@ export async function login(
     inputCode: string,
     inputRemember: boolean
 ): Promise<boolean> {
-    // Exception for unit testing
-    if (inputCode === "UNITTEST") {
-        loggedIn.set(true);
-        return false;
-    }
-
     const value = await sendRequest(inputCode);
 
     if (!value.includes("no code found")) {
