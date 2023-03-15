@@ -1,10 +1,5 @@
-import { writable } from "svelte/store";
-
 import { addHistory } from "./history";
-
-export const loggedIn = writable(false);
-export const vtCode = writable("");
-export const groupCode = writable("");
+import { groupCode, loggedIn, vtCode } from "../stores/login";
 
 /**
  * Send a request to the API.

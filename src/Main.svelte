@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { groupCode, vtCode } from "./lib/login";
+    import { groupCode, vtCode } from "./stores/login";
     import { nextWeek, previousWeek, today } from "./lib/date";
-    import { week, year } from "./lib/stores";
+    import { week, year } from "./stores/date";
 
     import Image from "./components/Image.svelte";
     import Theme from "./components/Theme.svelte";

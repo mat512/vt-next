@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { getWeek, getYear } from "./date";
+import { getWeek, getYear } from "../lib/date";
 
 const currentWeek = getWeek(new Date());
 
