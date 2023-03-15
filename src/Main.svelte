@@ -11,15 +11,6 @@
     import Calendar from "./components/Calendar.svelte";
     import Logout from "./components/Logout.svelte";
 
-    let width = 1920;
-    let height = 1080;
-
-    // Adapt the image size to the screen orientation
-    if (window.matchMedia("(orientation: portrait)").matches) {
-        width = 1080;
-        height = 1920;
-    }
-
     function onKeydown(event: KeyboardEvent) {
         const key = event.key;
 
@@ -66,5 +57,5 @@
         </p>
     </header>
 
-    <Image {year} {vtCode} {week} {width} {height} />
+    <Image {year} {vtCode} {week} />
 </div>

@@ -16,8 +16,15 @@
     export let year: Writable<number>;
     export let vtCode: Writable<string>;
     export let week: Writable<number>;
-    export let width: number;
-    export let height: number;
+
+    // Adapt the image size to the screen orientation
+    let width = 1920;
+    let height = 1080;
+
+    if (window.matchMedia("(orientation: portrait)").matches) {
+        width = 1080;
+        height = 1920;
+    }
 </script>
 
 {#if vtUrl !== null}
