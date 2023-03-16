@@ -6,18 +6,12 @@ dotenv.config();
 
 const code: string = process.env.CODE || "";
 
-test.describe("header", () => {
+test.describe("theme", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/");
 
         await page.locator('[placeholder="Code de groupe VT"]').fill(code);
         await page.locator("text=Continuer").click();
-    });
-
-    test("should logout", async ({ page }) => {
-        await page.getByRole("button", { name: "Déconnexion" }).click();
-
-        await page.getByRole("heading", { name: "VT Next" }).click();
     });
 
     test("should change the theme", async ({ page }) => {
