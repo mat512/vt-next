@@ -1,44 +1,43 @@
-/**
- * Listen on request from a client.
- * @param param0 The HTTP request and the Workers environment variables
- * @returns The HTTP Response
- */
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-    const reqBody = await readRequestBody(request);
+// Return the VT code
 
-    if (reqBody === undefined) {
+export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+    const { headers } = request;
+    const contentType = headers.get("content-type") || "";
+
+    if (contentType.includes("application/text")) {
+        const requestBody = await request.text();
+
+        const results = await sendRequest(env.VT_AGENDA_URL, requestBody);
+
+        const response = findCode(results);
+
+        return new Response(response);
+    } else {
         return new Response("the Content-Type must be application/text");
     }
+};
 
+async function sendRequest(vtUrl: string, login: string): Promise<string> {
+    const url = vtUrl + "/index.php";
     const init = {
-        body: `loginstudent=${reqBody}&larg=0&haut=0&cookieetudiant=0&logintype=student`,
+        body: `loginstudent=${login}&larg=0&haut=0&cookieetudiant=0&logintype=student`,
         method: "POST",
         headers: {
             "content-type": "application/x-www-form-urlencoded",
         },
     };
-
-    const url = env.VT_AGENDA_URL + "/index.php";
     const response = await fetch(url, init);
     let results = await response.text();
 
-    const regex = results.match(/name="current_student" value="(\d+)/i);
-    if (regex === null) results = "no code found";
-    else results = regex[1];
+    return results;
+}
 
-    return new Response(results);
-};
+function findCode(text: string): string {
+    let value: string;
 
-/**
- * Return the request from a client and check if `contentType` is valid.
- * @param request The HTTP request
- * @returns The request in text
- */
-async function readRequestBody(request) {
-    const { headers } = request;
-    const contentType = headers.get("content-type") || "";
+    const regex = text.match(/name="current_student" value="(\d+)/i);
+    if (regex === null) value = "no code found";
+    else value = regex[1];
 
-    if (contentType.includes("application/text")) {
-        return request.text();
-    }
+    return value;
 }
