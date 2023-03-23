@@ -7,6 +7,7 @@ Application that provides an enhanced version of your scheduling software for un
 ### Built With
 
 -   [Svelte](https://svelte.dev/)
+-   [daisyUI](https://daisyui.com/)
 -   [Vite](https://vitejs.dev/)
 -   [Cloudflare Pages](https://pages.cloudflare.com/)
 
@@ -15,9 +16,6 @@ Application that provides an enhanced version of your scheduling software for un
 ```bash
 # Install dependencies
 $ npm install
-
-# Edit .env file with the local API
-$ echo VITE_API_URL=http://localhost:8788 > .env
 
 # Run the API (replace with the original "VT Agenda" website URL)
 $ npx wrangler pages dev ./functions -b VT_AGENDA_URL="https://edt.example.fr"
@@ -35,10 +33,4 @@ $ npm run dev
 ```
 VT_AGENDA_URL=https://edt.example.fr
 NODE_VERSION=16.16.0
-```
-
--   Edit .env file with your Cloudflare Pages URL
-
-```
-VITE_API_URL=https://example.pages.dev
 ```
