@@ -1,10 +1,6 @@
-import { writable } from "svelte/store";
-
 import { addHistory } from "./history";
-
-export const loggedIn = writable(false);
-export const vtCode = writable("");
-export const groupCode = writable("");
+import { groupCode, loggedIn, vtCode } from "../stores/login";
+import { getAPIUrl } from "./url";
 
 /**
  * Send a request to the API.
@@ -16,24 +12,7 @@ export async function login(
     inputCode: string,
     inputRemember: boolean
 ): Promise<boolean> {
-    // Exception for unit testing
-    if (inputCode === "UNITTEST") {
-        loggedIn.set(true);
-        return false;
-    }
-
-    const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/text" },
-        body: inputCode,
-    };
-
-    const response = await fetch(
-        import.meta.env.VITE_API_URL + "/api/code",
-        requestOptions
-    );
-
-    let value = await response.text();
+    const value = await sendRequest(inputCode);
 
     if (!value.includes("no code found")) {
         if (inputRemember) {
@@ -50,4 +29,17 @@ export async function login(
     } else {
         return true;
     }
+}
+
+async function sendRequest(inputCode: string): Promise<string> {
+    const url = getAPIUrl("code");
+    const init = {
+        method: "POST",
+        headers: { "Content-Type": "application/text" },
+        body: inputCode,
+    };
+    const response = await fetch(url, init);
+    let results = await response.text();
+
+    return results;
 }

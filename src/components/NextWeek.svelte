@@ -1,6 +1,6 @@
 <script lang="ts">
     import { nextWeek } from "../lib/date";
-    import { week, year } from "../lib/stores";
+    import { week, year } from "../stores/date";
 
     function handleClick() {
         const result = nextWeek($week, $year);

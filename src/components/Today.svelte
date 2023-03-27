@@ -1,6 +1,6 @@
 <script lang="ts">
     import { today } from "../lib/date";
-    import { week, year } from "../lib/stores";
+    import { week, year } from "../stores/date";
 
     function handleClick() {
         const result = today($week, $year);

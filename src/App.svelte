@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { groupCode, vtCode, loggedIn } from "./lib/login";
+    import { groupCode, vtCode, loggedIn } from "./stores/login";
 
     import Main from "./Main.svelte";
     import Login from "./Login.svelte";
