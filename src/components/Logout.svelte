@@ -6,4 +6,4 @@
     }
 </script>
 
-<button on:click={logout} class="btn mt-5">Déconnexion</button>
+<button on:click={logout} class="btn">Déconnexion</button>

@@ -37,9 +37,11 @@
 
 <div>
     <header class="p-1">
-        <Logout />
-        <Theme />
-        <Today />
+        <div class="btn-group mt-5">
+            <Logout />
+            <Theme />
+            <Today />
+        </div>
         <input
             type="number"
             placeholder="Semaine"
@@ -48,8 +50,10 @@
             class="input input-bordered w-20"
         />
         <Calendar />
-        <PreviousWeek />
-        <NextWeek />
+        <div class="btn-group">
+            <PreviousWeek />
+            <NextWeek />
+        </div>
         <p class="mt-5">
             Code: {$groupCode ||
                 "(Non défini, déconnectez-vous et entrez votre code VT)"} - Semaine:
