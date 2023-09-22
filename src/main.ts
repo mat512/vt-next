@@ -1,17 +1,9 @@
 import "./app.css";
 import App from "./App.svelte";
 
-import { useRegisterSW } from "virtual:pwa-register/svelte";
+import { registerSW } from "virtual:pwa-register";
 
-const intervalMS = 30000;
-const updateServiceWorker = useRegisterSW({
-    onRegistered(r) {
-        r &&
-            setInterval(() => {
-                r.update();
-            }, intervalMS);
-    },
-});
+registerSW({ immediate: true });
 
 const app = new App({
     target: document.getElementById("app"),
