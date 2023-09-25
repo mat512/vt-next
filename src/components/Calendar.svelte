@@ -16,7 +16,7 @@
     placeholder="Calendrier"
     bind:value={$date}
     on:change={calendar}
-    class="input input-bordered mt-5"
+    class="input input-bordered"
 />
 
 <style>

@@ -42,10 +42,10 @@
             placeholder="Semaine"
             min="1"
             bind:value={$week}
-            class="input input-bordered w-20"
+            class="input input-bordered w-20 mt-2"
         />
         <Calendar />
-        <p class="mt-5">
+        <p class="mt-2">
             Code: {$groupCode ||
                 "(Non défini, déconnectez-vous et entrez votre code VT)"} - Semaine:
             {$week} - Année: {$year}
@@ -54,7 +54,7 @@
 
     <Image {year} {vtCode} {week} />
 
-    <div class="btm-nav bg-base-200">
+    <div class="btm-nav bg-base-200 pb-3">
         <Logout />
         <Theme />
         <Today />
