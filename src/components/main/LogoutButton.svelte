@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { loggedIn } from "../stores/login";
+    import { loggedIn } from "../../stores/login";
 
     function logout() {
         loggedIn.set(false);

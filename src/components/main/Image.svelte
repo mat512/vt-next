@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import type { Writable } from "svelte/store";
     
-    import { getAPIUrl } from "../lib/url";
+    import { getAPIUrl } from "../../lib/url";
 
     let vtUrl = localStorage.getItem("vtUrl");
     if (vtUrl === null) {

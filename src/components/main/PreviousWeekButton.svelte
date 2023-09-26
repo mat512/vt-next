@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { previousWeek } from "../lib/date";
-    import { week, year } from "../stores/date";
+    import { previousWeek } from "../../lib/date";
+    import { week, year } from "../../stores/date";
 
     function handleClick() {
         const result = previousWeek($week, $year);
