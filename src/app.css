@@ -7,3 +7,7 @@
 * {
     font-family: "Raleway", sans-serif;
 }
+
+[data-theme="dark"] img {
+    filter: invert(1);
+}
