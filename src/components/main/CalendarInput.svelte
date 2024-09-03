@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { getWeek } from "../lib/date";
-    import { week, year, date } from "../stores/date";
+    import { getWeek } from "../../lib/date";
+    import { week, year, date } from "../../stores/date";
 
     function calendar() {
         const d = new Date($date);
