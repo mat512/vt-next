@@ -37,7 +37,7 @@
                 logiciel VT, qui était essentiel à son bon fonctionnement.
                 Malheureusement, nous ne serons plus en mesure de fournir des
                 mises à jour ou un support pour cette application. Nous vous
-                remercions de votre compréhension.
+                remercions de votre compréhension. Au revoir :(
             </span>
         </div>
     </div>
